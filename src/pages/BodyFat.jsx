@@ -1,10 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
-import "../styles/Pages/Tool.css"
 
-import CaliperForm from "./Engine/CaliperEngine.jsx"
-import TapeForm from "./Engine/TapeEngine.jsx"
+import CaliperForm from "../components/Engine/CaliperEngine.jsx"
+import TapeForm from "../components/Engine/TapeEngine.jsx"
 
-export default function Tool() {
+export default function BodyFat() {
 
     // ---------------- STATE ----------------
     const [gender, setGender] = useState("");

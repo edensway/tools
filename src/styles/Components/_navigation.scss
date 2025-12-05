@@ -3,6 +3,7 @@
     padding: 0px 32px;
 
     .nav-container {
+
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -12,10 +13,10 @@
             height: 64px;
         }
 
-        .title {
+        .ctas {
             display: flex;
-            flex-direction: column;
-            align-items: end;
+            gap: 8px;
         }
+
     }
 }

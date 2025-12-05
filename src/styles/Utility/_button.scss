@@ -1,21 +1,30 @@
 @use "_colour.scss" as *;
 
-.pill-button {
+.button {
     color: $white;
     background-color: $accent;
+    text-decoration: none;
+
     padding: 12px 24px;
-
     border: none;
-    border-radius: 100pt;
+    border-radius: 8pt;
+
+    transition: 200ms;
 }
 
-.pill-button:hover {
+.button:hover {
     cursor: pointer;
+    opacity: .8;
 }
 
-.pill-button:active {
+.button:active {
     transition: 100ms;
     opacity: .7;
+}
+
+.pill-button {
+    @extend .button;
+    border-radius: 100pt;
 }
 
 .toggle {

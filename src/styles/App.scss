@@ -1,11 +1,13 @@
 @use "./Utility/_colour.scss" as *;
 
-@import url("./Components/Navigation");
+@use "./Components/navigation";
 
-@import url("./Utility/_button.scss");
-@import url("./Utility/_textbox.scss");
-@import url("./Utility/_dropdown.scss");
-@import url("./Utility/_tooltips.scss");
+@use "./Pages/tools";
+
+@use "./Utility/button";
+@use "./Utility/textbox";
+@use "./Utility/dropdown";
+@use "./Utility/tooltips";
 
 *,
 *::before,

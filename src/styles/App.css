@@ -1,8 +1,242 @@
-@import url("./Components/Navigation");
-@import url("./Utility/_button.scss");
-@import url("./Utility/_textbox.scss");
-@import url("./Utility/_dropdown.scss");
-@import url("./Utility/_tooltips.scss");
+.navigation {
+  padding: 0px 32px;
+}
+.navigation .nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.navigation .nav-container .logo-img {
+  height: 64px;
+}
+.navigation .nav-container .ctas {
+  display: flex;
+  gap: 8px;
+}
+
+.tool {
+  padding: 0px 32px;
+}
+.tool .tool-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.tool .tool-container .units-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+}
+.tool .tool-container .user-section {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.tool .tool-container .user-section .details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tool .tool-container .user-section .details-container span {
+  color: hsl(337, 90%, 45%);
+}
+.tool .tool-container .user-section .details-container .inputwrapper {
+  display: flex;
+  align-items: center;
+}
+.tool .tool-container .user-section .details-container .inputwrapper .inputbox {
+  width: 100%;
+}
+.tool .tool-container .user-section .details-container .dropdown {
+  width: 100%;
+  height: 100%;
+}
+.tool .tool-container .method-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+.tool .tool-container .caliper-method {
+  display: flex;
+  gap: 16px;
+}
+.tool .tool-container .caliper-method .measurement-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tool .tool-container .caliper-method .measurement-container .part-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tool .tool-container .caliper-method .measurement-container .inputbox {
+  width: 100%;
+}
+.tool .tool-container .result-section {
+  background-color: hsl(0, 0%, 100%);
+  padding: 24px 32px 32px 32px;
+  border: 2px solid hsl(0, 0%, 95%);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tool .tool-container .result-section .basic-result,
+.tool .tool-container .result-section .body-result {
+  display: flex;
+  gap: 16px;
+}
+.tool .tool-container .result-section .basic-result .infobox,
+.tool .tool-container .result-section .body-result .infobox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+.tool .tool-container .result-section .basic-result .infobox .body,
+.tool .tool-container .result-section .body-result .infobox .body {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tool .tool-container .result-section .basic-result .infobox .inputbox,
+.tool .tool-container .result-section .body-result .infobox .inputbox {
+  padding: 12px 16px;
+}
+.tool .tool-container .cta .print-btn {
+  color: hsl(0, 0%, 0%);
+  background-color: transparent;
+}
+
+.button, .pill-button, .toggle .toggle-disable, .toggle .toggle-active {
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(337, 90%, 45%);
+  text-decoration: none;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8pt;
+  transition: 200ms;
+}
+
+.button:hover, .pill-button:hover, .toggle .toggle-disable:hover, .toggle .toggle-active:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.button:active, .pill-button:active, .toggle .toggle-disable:active, .toggle .toggle-active:active {
+  transition: 100ms;
+  opacity: 0.7;
+}
+
+.pill-button, .toggle .toggle-disable, .toggle .toggle-active {
+  border-radius: 100pt;
+}
+
+.toggle {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: hsl(0, 0%, 95%);
+  border-radius: 100pt;
+}
+.toggle .toggle-disable {
+  color: hsl(0, 0%, 0%);
+  background-color: transparent;
+}
+.toggle--left .toggle-disable {
+  padding-right: 16px;
+}
+.toggle--right .toggle-disable {
+  padding-left: 16px;
+}
+
+.inputbox {
+  height: 48px;
+  padding: 0px 16px;
+  border: 2px solid hsl(0, 0%, 95%);
+  border-radius: 16px;
+}
+.inputbox:focus {
+  outline-color: hsl(337, 90%, 45%);
+}
+
+.inputbox::-moz-placeholder {
+  opacity: 0.2;
+}
+
+.inputbox::placeholder {
+  opacity: 0.2;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  width: 30px;
+  height: 30px;
+  background-color: hsl(0, 0%, 95%);
+}
+
+.dropdown {
+  padding: 0px 16px;
+  border: 2px solid hsl(0, 0%, 95%);
+  border-radius: 16px;
+  font-size: 12pt;
+  font-weight: 400;
+  letter-spacing: -0.2pt;
+  width: 300px;
+  height: 44px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+  background-repeat: no-repeat;
+}
+.dropdown:focus {
+  outline-color: hsl(337, 90%, 45%);
+}
+
+.tooltips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  color: hsl(0, 0%, 79.1666666667%);
+  border: 1px solid hsl(0, 0%, 79.1666666667%);
+  border-radius: 50%;
+}
+.tooltips .tooltip-icon {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.tooltips .tooltip-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 40px;
+  background-color: hsl(0, 0%, 95%);
+  color: hsl(0, 0%, 0%);
+  padding: 8px 12px;
+  border-radius: 8px;
+  width: 300px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.tooltips .tooltip-icon:hover::after {
+  opacity: 1;
+}
+
 *,
 *::before,
 *::after {
