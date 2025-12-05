@@ -1,0 +1,26 @@
+@use "_colour.scss" as *;
+
+.dropdown {
+    padding: 0px 16px;
+    border: 2px solid $gray;
+    border-radius: 16px;
+
+    font-size: 12pt;
+    font-weight: 400;
+    letter-spacing: -.2pt;
+
+    width: 300px;
+    height: 44px;
+
+    // removes the default chevron
+    appearance: none; // standard
+    -webkit-appearance: none; // Safari/Chrome
+    -moz-appearance: none; // Firefox
+
+    background-image: none;
+    background-repeat: no-repeat;
+
+    &:focus {
+        outline-color: $accent; // change border to accent color
+    }
+}

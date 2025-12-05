@@ -1,0 +1,23 @@
+@use "_colour.scss" as *;
+
+.inputbox {
+    height: 48px;
+    padding: 0px 16px;
+    border: 2px solid $gray;
+    border-radius: 16px;
+
+    &:focus {
+        outline-color: $accent; // change border to accent color
+    }
+}
+
+.inputbox::placeholder {
+    opacity: .2;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    width: 30px;
+    height: 30px;
+    background-color: $gray;
+}

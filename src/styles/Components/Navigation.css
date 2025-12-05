@@ -1,0 +1,17 @@
+.navigation {
+  padding: 0px 32px;
+}
+.navigation .nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.navigation .nav-container .logo-img {
+  height: 64px;
+}
+.navigation .nav-container .title {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}

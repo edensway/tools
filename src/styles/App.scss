@@ -1,0 +1,113 @@
+@use "./Utility/_colour.scss" as *;
+
+@import url("./Components/Navigation");
+
+@import url("./Utility/_button.scss");
+@import url("./Utility/_textbox.scss");
+@import url("./Utility/_dropdown.scss");
+@import url("./Utility/_tooltips.scss");
+
+*,
+*::before,
+*::after {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.99), rgba(255, 255, 255, 0.98)),
+        url(../assets/wallpaper.svg);
+    background-position: 0px 0px;
+    background-size: cover, cover;
+
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.container {
+    padding: 16px 0px;
+    max-width: 1100px;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.heading-1 {
+    font-size: 20pt;
+    font-weight: 600;
+    letter-spacing: -.6pt;
+}
+
+.heading-3 {
+    font-size: 16pt;
+    font-weight: 600;
+    letter-spacing: -.6pt;
+}
+
+.body {
+    font-size: 12pt;
+    font-weight: 400;
+    letter-spacing: -.2pt;
+}
+
+/* -------------------------------
+   PRINT SETTINGS
+--------------------------------*/
+@media print {
+
+    @page {
+        size: A4 portrait;
+        margin: 5mm;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    body {
+        background: white !important;
+        image-rendering: crisp-edges !important;
+    }
+
+    @page {
+        margin-header: 0;
+        margin-footer: 0;
+    }
+
+    .print-btn,
+    .result-btn {
+        display: none !important;
+    }
+
+    // .toggle-disable {
+    //     display: none !important;
+    // }
+
+    .dropdown option {
+        display: none;
+    }
+
+    .dropdown option:checked {
+        display: block;
+    }
+
+    nav,
+    header,
+    footer,
+    .sidebar {
+        display: none !important;
+    }
+
+}
+
+/* iPad print adjustments */
+@media print and (max-device-width: 1024px) {
+    @page {
+        size: auto; // Let the browser decide to reduce margins
+        margin: 0;
+    }
+}

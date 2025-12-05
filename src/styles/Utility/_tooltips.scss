@@ -1,0 +1,49 @@
+@use "_colour.scss" as *;
+
+.tooltips {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    color: $dark_gray;
+    border: 1px solid $dark_gray;
+    border-radius: 50%; // make it perfectly circular
+
+    .tooltip-icon {
+
+        position: relative; // needed for ::after positioning
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        &::after {
+            content: attr(data-tooltip);
+
+            position: absolute;
+            left: 40px;
+            background-color: $gray;
+            color: $black;
+
+            padding: 8px 12px;
+            border-radius: 8px;
+
+            width: 300px;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+        &:hover::after {
+            opacity: 1;
+        }
+    }
+}

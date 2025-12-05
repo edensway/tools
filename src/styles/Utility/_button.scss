@@ -1,0 +1,49 @@
+@use "_colour.scss" as *;
+
+.pill-button {
+    color: $white;
+    background-color: $accent;
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 100pt;
+}
+
+.pill-button:hover {
+    cursor: pointer;
+}
+
+.pill-button:active {
+    transition: 100ms;
+    opacity: .7;
+}
+
+.toggle {
+
+    width: fit-content;
+
+    background-color: $gray;
+    border-radius: 100pt;
+
+    .toggle-active {
+        @extend .pill-button;
+    }
+
+    .toggle-disable {
+        @extend .pill-button;
+        color: $black;
+        background-color: transparent;
+    }
+
+    &--left {
+        .toggle-disable {
+            padding-right: 16px;
+        }
+    }
+
+    &--right {
+        .toggle-disable {
+            padding-left: 16px;
+        }
+    }
+}
