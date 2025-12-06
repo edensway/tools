@@ -1,4 +1,5 @@
 #!/bin/bash
+#npm run deploy-all "Message"
 
 COMMIT_MSG="${1:-new commit}"
 
