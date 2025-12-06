@@ -1,7 +1,1 @@
-self.addEventListener("install", event => {
-  self.skipWaiting();
-});
-
-self.addEventListener("activate", () => {
-  console.log("Service Worker active");
-});
+if(!self.define){let e,s={};const i=(i,n)=>(i=new URL(i+".js",n).href,s[i]||new Promise(s=>{if("document"in self){const e=document.createElement("script");e.src=i,e.onload=s,document.head.appendChild(e)}else e=i,importScripts(i),s()}).then(()=>{let e=s[i];if(!e)throw new Error(`Module ${i} didn’t register its module`);return e}));self.define=(n,o)=>{const r=e||("document"in self?document.currentScript.src:"")||location.href;if(s[r])return;let l={};const a=e=>i(e,r),t={module:{uri:r},exports:l,require:a};s[r]=Promise.all(n.map(e=>t[e]||a(e))).then(e=>(o(...e),l))}}define(["./workbox-8c29f6e4"],function(e){"use strict";self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"launch-640x1136.png",revision:"d26de4c8844db483a79960900d804efd"},{url:"index.html",revision:"06a407373f8663f91de4cb6a6f9611df"},{url:"icon-512.png",revision:"da188a4f69d86c3fbe421cb7e9ad017e"},{url:"icon-192.png",revision:"cf1f20bba59ec46f6bb20bc0a77ab067"},{url:"apple-touch-icon.png",revision:"84b8a6e30cd3588caa59ba068cd173d8"},{url:"Logo.svg",revision:"7a55d479dece73626625d2aae70aadf7"},{url:"assets/workbox-window.prod.es5-BIl4cyR9.js",revision:null},{url:"assets/wallpaper-B522UfMh.svg",revision:null},{url:"assets/index-CbQNW-F7.js",revision:null},{url:"assets/index-B_VMaoUc.css",revision:null},{url:"assets/Logo-jviuxwAa.svg",revision:null},{url:"manifest.webmanifest",revision:"44423ea893ef87937b1aabeb23ebfacf"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html")))});
