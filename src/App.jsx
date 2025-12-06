@@ -1,5 +1,5 @@
 import "./styles/app.css";
-import Navigation from "./Components/Navigation";
+import Navigation from "./components/Navigation";
 
 import BodyFat from "./pages/BodyFat";
 import BMI from "./pages/BMI";
@@ -12,7 +12,7 @@ function App() {
       <Navigation />
 
       <Routes>
-        <Route path="/" element={<BMI />} />
+        <Route path="/bmi" element={<BMI />} />
         <Route path="/body-fat" element={<BodyFat />} />
       </Routes>
     </div>
