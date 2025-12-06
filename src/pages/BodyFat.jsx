@@ -210,8 +210,8 @@ export default function BodyFat() {
 
                     {/* Units */}
                     <div className={`toggle ${unit === "Metrics" ? "toggle--right" : "toggle--left"}`}>
-                        <button className={`body ${unit === "Metrics" ? "toggle-active" : "toggle-disable"}`} onClick={() => setUnit("Metrics")}>Metrics (kg/cm)</button>
-                        <button className={`body ${unit === "Imperial" ? "toggle-active" : "toggle-disable"}`} onClick={() => setUnit("Imperial")}>Imperial (lb/in)</button>
+                        <button className={`body ${unit === "Metrics" ? "toggle-active" : "toggle-disable"}`} onClick={() => setUnit("Metrics")}>Metrics <small>(kg/cm)</small></button>
+                        <button className={`body ${unit === "Imperial" ? "toggle-active" : "toggle-disable"}`} onClick={() => setUnit("Imperial")}>Imperial <small>(lb/in)</small></button>
                     </div>
                 </div>
 
