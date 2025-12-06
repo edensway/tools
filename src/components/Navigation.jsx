@@ -11,7 +11,7 @@ export default function Navigation() {
 
                 <div className="ctas">
                     <NavLink
-                        to="/bmi"
+                        to="/"
                         className={({ isActive }) => (isActive ? "btn-active" : "button")}>
                         BMI
                     </NavLink>
