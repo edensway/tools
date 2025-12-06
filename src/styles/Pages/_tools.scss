@@ -53,6 +53,12 @@
 
         }
 
+        .bmi-user-section {
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
         .method-section {
 
             display: flex;
@@ -99,10 +105,46 @@
 
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 24px;
 
-            .basic-result,
-            .body-result {
+            .bmi-scale {
+
+                .category {
+
+                    margin-bottom: 2px;
+
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+
+                    .indicator {
+                        width: 16px;
+                        height: 16px;
+                        border-radius: 16px;
+                        // background-color: $accent;
+                    }
+                }
+
+                .progress-bar {
+                    width: 100%;
+                }
+
+                .label {
+                    margin-top: 4px;
+                    position: relative;
+                    width: 100%;
+                    height: 20px;
+
+                    p {
+                        position: absolute;
+                        transform: translateX(-50%);
+                        font-size: 14px;
+                    }
+
+                }
+            }
+
+            .result {
                 display: flex;
                 gap: 16px;
 

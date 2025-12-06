@@ -12,15 +12,13 @@ export default function Navigation() {
                 <div className="ctas">
                     <NavLink
                         to="/bmi"
-                        className={({ isActive }) => (isActive ? "btn-active" : "button")}
-                    >
+                        className={({ isActive }) => (isActive ? "btn-active" : "button")}>
                         BMI
                     </NavLink>
 
                     <NavLink
                         to="/body-fat"
-                        className={({ isActive }) => (isActive ? "btn-active" : "button")}
-                    >
+                        className={({ isActive }) => (isActive ? "btn-active" : "button")}>
                         Body Fat
                     </NavLink>
                 </div>

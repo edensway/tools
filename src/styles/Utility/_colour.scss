@@ -4,3 +4,34 @@ $white: #fefefe;
 $black: #222222;
 $gray: #f2f2f2;
 $dark_gray: #cacaca;
+
+$blue: #44A8FF;
+$green: #51CC01;
+$yellow: #F8D001;
+$orange: #FF9929;
+$dark_orange: #FF7047;
+$red: #FF4B4B;
+
+.blue {
+    background-color: $blue;
+}
+
+.green {
+    background-color: $green;
+}
+
+.yellow {
+    background-color: $yellow;
+}
+
+.orange {
+    background-color: $orange;
+}
+
+.dark_orange {
+    background-color: $dark_orange;
+}
+
+.red {
+    background-color: $red;
+}
