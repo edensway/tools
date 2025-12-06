@@ -159,6 +159,11 @@
 .tool .tool-container .result-section .result .infobox .inputbox {
   padding: 12px 16px;
 }
+.tool .tool-container .result-section .result .infobox .inputbox .diff {
+  margin-left: 2px;
+  font-size: 14px;
+  color: #d90a59;
+}
 .tool .tool-container .cta .print-btn {
   color: #222222;
   background-color: transparent;
