@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 // import Home from "./pages/Home";
 import BodyFat from "./pages/BodyFat";
 import BMI from "./pages/BMI";
+import BMR from "./pages/BMR";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<BMI />} />
+        <Route path="/bmr" element={<BMR />} />
         <Route path="/body-fat" element={<BodyFat />} />
       </Routes>
     </div>

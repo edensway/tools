@@ -15,7 +15,11 @@ export default function Navigation() {
                         className={({ isActive }) => (isActive ? "btn-active" : "button")}>
                         BMI
                     </NavLink>
-
+                    <NavLink
+                        to="/bmr"
+                        className={({ isActive }) => (isActive ? "btn-active" : "button")}>
+                        BMR
+                    </NavLink>
                     <NavLink
                         to="/body-fat"
                         className={({ isActive }) => (isActive ? "btn-active" : "button")}>

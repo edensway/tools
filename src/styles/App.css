@@ -131,15 +131,27 @@
   width: 100%;
 }
 .tool .tool-container .result-section .bmi-scale .label {
-  margin-top: 4px;
   position: relative;
   width: 100%;
   height: 20px;
 }
-.tool .tool-container .result-section .bmi-scale .label p {
+.tool .tool-container .result-section .bmi-scale .label .name {
   position: absolute;
-  transform: translateX(-50%);
+  transform: translate(-50%, -20px);
   font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.tool .tool-container .result-section .bmi-scale .label .name .line {
+  width: 2px;
+  height: 18px;
+  background-color: #222222;
+  opacity: 0.75;
+}
+.tool .tool-container .result-section .bmi-scale .label .name:first-child, .tool .tool-container .result-section .bmi-scale .label .name:last-child {
+  opacity: 0;
 }
 .tool .tool-container .result-section .result {
   display: flex;
@@ -164,9 +176,20 @@
   font-size: 14px;
   color: #d90a59;
 }
+.tool .tool-container .lower-section {
+  display: flex;
+  justify-content: space-between;
+}
 .tool .tool-container .cta .print-btn {
   color: #222222;
   background-color: transparent;
+}
+.tool .tool-container .source-logo {
+  height: 42px;
+}
+.tool .tool-container .source-logo .logo {
+  height: 100%;
+  margin-left: 16px;
 }
 
 .button, .pill-button, .toggle .toggle-disable, .toggle .toggle-active, .btn-active {
@@ -429,12 +452,6 @@ body {
   }
   .dropdown option:checked {
     display: block;
-  }
-  nav,
-  header,
-  footer,
-  .sidebar {
-    display: none !important;
   }
 }
 /* iPad print adjustments */

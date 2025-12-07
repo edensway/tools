@@ -86,23 +86,12 @@ body {
         display: none !important;
     }
 
-    // .toggle-disable {
-    //     display: none !important;
-    // }
-
     .dropdown option {
         display: none;
     }
 
     .dropdown option:checked {
         display: block;
-    }
-
-    nav,
-    header,
-    footer,
-    .sidebar {
-        display: none !important;
     }
 
 }
