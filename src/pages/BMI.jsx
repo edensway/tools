@@ -402,8 +402,8 @@ export default function BMI() {
                     </div>
 
                     <div className="source-logo">
-                        <img src={cdc_logo} alt="CDC Logo" className="logo cdc-logo" />
                         <img src={who_logo} alt="WHO Logo" className="logo who-logo" />
+                        <img src={cdc_logo} alt="CDC Logo" className="logo cdc-logo" />
                         <img src={logo} alt="Eden's Way Logo" className="logo ew-logo" />
                     </div>
                 </div>
