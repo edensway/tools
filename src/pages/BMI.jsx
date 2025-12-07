@@ -156,8 +156,7 @@ export default function BMI() {
             if (p < 5) return (p / 5) * 20;
             if (p < 85) return 20 + ((p - 5) / 80) * 60;
             if (p < 95) return 80 + ((p - 85) / 10) * 10;
-
-            return 90 + ((p - 95) / 10) * 10;
+            return 90 + Math.min((p - 95) * 2, 10);
         }
 
         const clamped = Math.min(Math.max(bmi, 16), 40);
@@ -181,10 +180,11 @@ export default function BMI() {
     // LABEL DEFINITIONS
     // ------------------------
     const childLabels = [
-        { label: "<5th", pos: 0 },
-        { label: "5–85th", pos: 20 },
-        { label: "85–95th", pos: 80 },
-        { label: ">95th", pos: 90 },
+        { label: "0th", pos: 0 },
+        { label: "5th", pos: 20 },
+        { label: "85th", pos: 80 },
+        { label: "95th", pos: 90 },
+        { label: "100th", pos: 100 },
     ];
 
     const adultLabels = [
@@ -199,7 +199,7 @@ export default function BMI() {
     const formattedChildPercentile = useMemo(() => {
         if (childPercentile === null) return "";
         if (childPercentile < 5) return "<5th";
-        if (childPercentile > 95) return ">95th";
+        if (childPercentile > 100) return ">100th";
         return `${childPercentile.toFixed(0)}th`;
     }, [childPercentile]);
 
@@ -339,7 +339,7 @@ export default function BMI() {
                                             className="name"
                                             style={{ left: `${l.pos}%` }}>
                                             <div className="line"></div>
-                                            {l.label}
+                                            <p>{l.label}</p>
                                         </div>
                                     ))
                                     : adultLabels.map((l, i) => (

@@ -156,7 +156,7 @@
   background-color: #222222;
   opacity: 0.75;
 }
-.tool .tool-container .result-section .bmi-scale .label .name:first-child, .tool .tool-container .result-section .bmi-scale .label .name:last-child {
+.tool .tool-container .result-section .bmi-scale .label .name:first-child .line, .tool .tool-container .result-section .bmi-scale .label .name:last-child .line {
   opacity: 0;
 }
 .tool .tool-container .result-section .result {

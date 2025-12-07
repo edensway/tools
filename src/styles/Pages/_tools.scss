@@ -153,7 +153,9 @@
 
                         &:first-child,
                         &:last-child {
-                            opacity: 0; // only works if there are multiple lines per .name
+                            .line {
+                                opacity: 0; // only works if there are multiple lines per .name
+                            }
                         }
 
                     }
