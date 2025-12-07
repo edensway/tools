@@ -194,21 +194,22 @@
         .lower-section {
             display: flex;
             justify-content: space-between;
-        }
+            align-items: end;
 
-        .cta {
-            .print-btn {
-                color: $black;
-                background-color: transparent;
+            .cta {
+                .print-btn {
+                    color: $black;
+                    background-color: transparent;
+                }
             }
-        }
 
-        .source-logo {
-            height: 42px;
+            .source-logo {
+                height: 36px;
 
-            .logo {
-                height: 100%;
-                margin-left: 16px;
+                .logo {
+                    height: 100%;
+                    margin-left: 16px;
+                }
             }
         }
     }

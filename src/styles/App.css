@@ -31,8 +31,14 @@
   justify-content: space-between;
   align-items: center;
 }
-.navigation .nav-container .logo-img {
-  height: 64px;
+.navigation .nav-container .logo-section {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.navigation .nav-container .logo-section .logo-img {
+  height: 48px;
 }
 .navigation .nav-container .ctas {
   display: flex;
@@ -179,15 +185,16 @@
 .tool .tool-container .lower-section {
   display: flex;
   justify-content: space-between;
+  align-items: end;
 }
-.tool .tool-container .cta .print-btn {
+.tool .tool-container .lower-section .cta .print-btn {
   color: #222222;
   background-color: transparent;
 }
-.tool .tool-container .source-logo {
-  height: 42px;
+.tool .tool-container .lower-section .source-logo {
+  height: 36px;
 }
-.tool .tool-container .source-logo .logo {
+.tool .tool-container .lower-section .source-logo .logo {
   height: 100%;
   margin-left: 16px;
 }

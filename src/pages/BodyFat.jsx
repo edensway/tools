@@ -3,6 +3,8 @@ import { useState, useMemo, useEffect } from "react";
 import CaliperForm from "../components/Engine/CaliperEngine.jsx"
 import TapeForm from "../components/Engine/TapeEngine.jsx"
 
+import logo from "../assets/logo.svg";
+
 export default function BodyFat() {
 
     // ---------------- STATE ----------------
@@ -138,6 +140,17 @@ export default function BodyFat() {
         setSubmit(true);
     };
 
+    const handleRestart = () => {
+        if (!window.confirm("Are you sure you want to restart?")) return;
+
+        setAge("");
+        setGender("");
+        setWeight("");
+        setHeight("");
+        setUnit("Metrics");
+        setSubmit(false);
+    };
+
 
     // ---------------- PRINT ----------------
     const handlePrint = () => {
@@ -243,18 +256,18 @@ export default function BodyFat() {
                         </select>
                     </div>
 
-                    <div className="details-container users_weight">
-                        <label className="body">
-                            Weight <small>({unit === "Metrics" ? "kg" : "lb"})</small> <span>*</span>
-                        </label>
-                        <input type="number" step="0.1" className="inputbox body" value={weight} onChange={(e) => setWeight(e.target.value)} />
-                    </div>
-
                     <div className="details-container users_height">
                         <label className="body">
                             Height <small>({unit === "Metrics" ? "cm" : "inch"})</small> <span>*</span>
                         </label>
                         <input type="number" step="0.1" className="inputbox body" value={height} onChange={(e) => setHeight(e.target.value)} />
+                    </div>
+
+                    <div className="details-container users_weight">
+                        <label className="body">
+                            Weight <small>({unit === "Metrics" ? "kg" : "lb"})</small> <span>*</span>
+                        </label>
+                        <input type="number" step="0.1" className="inputbox body" value={weight} onChange={(e) => setWeight(e.target.value)} />
                     </div>
 
                     {/* Lifestyle Risks */}
@@ -342,24 +355,42 @@ export default function BodyFat() {
 
                             <div className="infobox">
                                 <p className="body">Ideal Body Weight</p>
-                                <p className="inputbox body">{idealBodyWeight ? idealBodyWeight.toFixed(2) : "-"} kg</p>
+                                <p className="inputbox body">
+                                    {idealBodyWeight.toFixed(2)} <small>kg</small>{" "}
+                                    <span className="diff">
+                                        ({weightInKg - idealBodyWeight > 0 ? "+" : ""}{(weightInKg - idealBodyWeight).toFixed(2)} <small>kg</small>)
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
                 )}
 
-                {/* ---------------- CTA ---------------- */}
-                <div className="cta">
-                    {!submit && (
-                        <button className="result-btn pill-button body" onClick={handleSubmit}>
-                            View Results
-                        </button>
-                    )}
+                {/* BOTTOM BUTTONS */}
+                <div className="lower-section">
+                    <div className="cta">
+                        {!submit ? (
+                            <button className="result-btn pill-button body" onClick={handleSubmit}>
+                                View Results
+                            </button>
+                        ) : (
+                            <>
+                                <button className="refresh-btn pill-button body" onClick={handleRestart}>
+                                    Restart
+                                </button>
 
-                    <button className="print-btn pill-button body" onClick={handlePrint}>
-                        Print Results
-                    </button>
+                                <button className="print-btn pill-button body" onClick={handlePrint}>
+                                    Print Results
+                                </button>
+                            </>
+                        )}
+                    </div>
+
+                    <div className="source-logo">
+                        <img src={logo} alt="Eden's Way Logo" className="logo ew-logo" />
+                    </div>
                 </div>
+
 
             </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import cdcLms from "../data/cdc_bmi_lms.json";
 
+import logo from "../assets/logo.svg";
 import who_logo from "../assets/bmi/WHO_logo.svg";
 import cdc_logo from "../assets/bmi/CDC_logo.svg";
 
@@ -35,7 +36,7 @@ export default function BMI() {
     // BASIC COMPUTED VALUES
     // ------------------------
     const isChild = useMemo(() => parseInt(age) < 18, [age]);
-    const ageMonths = useMemo(() => parseInt(age) * 12, [age]);
+    const ageMonths = useMemo(() => (parseInt(age) || 0) * 12, [age]);
 
     const weightInKg = useMemo(() => {
         if (!weight) return 0;
@@ -370,7 +371,7 @@ export default function BMI() {
                                     <p className="inputbox body">
                                         {idealBodyWeight.toFixed(2)} <small>kg</small>{" "}
                                         <span className="diff">
-                                            ({(idealBodyWeight - weightInKg).toFixed(2)} <small>kg</small>)
+                                            ({weightInKg - idealBodyWeight > 0 ? "+" : ""}{(weightInKg - idealBodyWeight).toFixed(2)} <small>kg</small>)
                                         </span>
                                     </p>
                                 </div>
@@ -401,8 +402,9 @@ export default function BMI() {
                     </div>
 
                     <div className="source-logo">
-                        <img src={who_logo} alt="WHO Logo" className="logo who-logo" />
                         <img src={cdc_logo} alt="CDC Logo" className="logo cdc-logo" />
+                        <img src={who_logo} alt="WHO Logo" className="logo who-logo" />
+                        <img src={logo} alt="Eden's Way Logo" className="logo ew-logo" />
                     </div>
                 </div>
 

@@ -9,8 +9,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "Eden's Way – Tools",
-        short_name: "tools",
+        name: "Eden's Way – Body Measurement Calculator",
+        short_name: "Measurement Tool",
         start_url: "/tools/",
         scope: "/tools/",
         display: "standalone",

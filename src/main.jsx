@@ -9,7 +9,7 @@ registerSW({
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/tools">
+  <BrowserRouter basename="/tools/">
     <App />
   </BrowserRouter>
 )

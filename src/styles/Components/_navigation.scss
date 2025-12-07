@@ -9,8 +9,15 @@
         justify-content: space-between;
         align-items: center;
 
-        .logo-img {
-            height: 64px;
+        .logo-section {
+            display: inherit;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+
+            .logo-img {
+                height: 48px;
+            }
         }
 
         .ctas {
