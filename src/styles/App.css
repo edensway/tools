@@ -247,6 +247,13 @@
   .tool .tool-container .lower-section .logo {
     display: none;
   }
+  .tool .tool-container .lower-section .cta {
+    display: flex;
+    width: 100%;
+  }
+  .tool .tool-container .lower-section .cta .pill-button {
+    flex: 1;
+  }
 }
 .button, .pill-button, .toggle .toggle-disable, .toggle .toggle-active, .btn-unactive {
   color: #fefefe;
@@ -280,8 +287,7 @@
 }
 
 .toggle {
-  width: -moz-fit-content;
-  width: fit-content;
+  display: flex;
   background-color: #f2f2f2;
   border-radius: 100pt;
 }
@@ -447,6 +453,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 body {
+  overflow-x: hidden;
   background-image: linear-gradient(rgba(255, 255, 255, 0.99), rgba(255, 255, 255, 0.98)), url(../assets/wallpaper.svg);
   background-position: 0px 0px;
   background-size: cover, cover;

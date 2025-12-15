@@ -38,7 +38,9 @@
 
 .toggle {
 
-    width: fit-content;
+    // width: fit-content;
+
+    display: flex;
 
     background-color: $gray;
     border-radius: 100pt;

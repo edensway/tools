@@ -261,6 +261,15 @@
                 .logo {
                     display: none;
                 }
+
+                .cta {
+                    display: flex;
+                    width: 100%;
+
+                    .pill-button {
+                        flex: 1;
+                    }
+                }
             }
         }
     }
