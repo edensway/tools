@@ -10,7 +10,7 @@ export default function Navigation() {
                     <a href="https://edensway.in/" target="_blank">
                         <img src={logo} className="logo-img" alt="Website Logo" />
                     </a>
-                    <h1 className="heading-1">Body Measurement Calculator</h1>
+                    <h1 className="heading-1 title">Body Measurement Calculator <small>(Beta v0.1)</small></h1>
                 </div>
 
 
@@ -18,7 +18,7 @@ export default function Navigation() {
                 <div className="ctas">
                     <NavLink
                         to="/"
-                        className={({ isActive }) => (isActive ? "btn-active" : "button")}>
+                        className={({ isActive }) => (isActive ? "button" : "btn-unactive")}>
                         BMI
                     </NavLink>
                     {/* <NavLink
@@ -28,7 +28,7 @@ export default function Navigation() {
                     </NavLink> */}
                     <NavLink
                         to="/body-fat"
-                        className={({ isActive }) => (isActive ? "btn-active" : "button")}>
+                        className={({ isActive }) => (isActive ? "button" : "btn-unactive")}>
                         Body Fat
                     </NavLink>
                 </div>

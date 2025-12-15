@@ -164,7 +164,7 @@ export default function BMI() {
     }, [bmi, childPercentile, isChild]);
 
     // ------------------------
-    // IDEAL BODY WEIGHT (ADULTS)
+    // Devine IDEAL BODY WEIGHT (ADULTS)
     // ------------------------
     const idealBodyWeight = useMemo(() => {
         if (!heightInCm || isChild) return null;
@@ -261,9 +261,15 @@ export default function BMI() {
                         <input
                             type="number"
                             className="inputbox body"
+                            min={0}
+                            step={1}
                             value={age}
-                            min="0"
-                            onChange={e => setAge(e.target.value)}
+                            onChange={(e) => {
+                                const value = e.target.value
+                                if (Number.isInteger(Number(value)) || value === '') {
+                                    setAge(value)
+                                }
+                            }}
                         />
                     </div>
 

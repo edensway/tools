@@ -10,8 +10,7 @@ export default function BodyFat() {
     // ---------------- STATE ----------------
     const [gender, setGender] = useState("");
     const [unit, setUnit] = useState("Metrics");
-    const [name, setName] = useState("");
-    const [dob, setDob] = useState("");
+    const [age, setAge] = useState("");
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
     const [type, setType] = useState("FC");
@@ -73,21 +72,6 @@ export default function BodyFat() {
     }, [height, unit]);
 
 
-    // ---------------- AGE ----------------
-    const age = useMemo(() => {
-        if (!dob) return 20;
-        const today = new Date();
-        const birth = new Date(dob);
-
-        let a = today.getFullYear() - birth.getFullYear();
-        const m = today.getMonth() - birth.getMonth();
-
-        if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) a--;
-
-        return a;
-    }, [dob]);
-
-
     // ---------------- BMI ----------------
     const bmi = useMemo(() => {
         if (!weightInKg || !heightInCm) return null;
@@ -133,8 +117,8 @@ export default function BodyFat() {
 
     // ---------------- SUBMIT ----------------
     const handleSubmit = () => {
-        if (!weight || !height || !dob) {
-            alert("Please enter your Weight, Height, and Date of Birth.");
+        if (!weight || !height || !age) {
+            alert("Please enter your Weight, Height, and Age.");
             return;
         }
         setSubmit(true);
@@ -143,12 +127,18 @@ export default function BodyFat() {
     const handleRestart = () => {
         if (!window.confirm("Are you sure you want to restart?")) return;
 
+        setType("FC")
         setAge("");
         setGender("");
         setWeight("");
         setHeight("");
+        setLifestyleCondition([]);
         setUnit("Metrics");
         setSubmit(false);
+        setSelectedMethod("");
+        setBodyDensity(null);
+        setBodyFatPercentOverride(null)
+        setTooltip("Please select a method to measure body fat.")
     };
 
 
@@ -231,16 +221,23 @@ export default function BodyFat() {
                 {/* ---------------- USER INPUT ---------------- */}
                 <div className="user-section">
 
-                    <div className="details-container users_name">
-                        <label className="body">Full Name</label>
-                        <input className="inputbox body" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-                    </div>
-
-                    <div className="details-container users_dob">
+                    <div className="details-container users_age">
                         <label className="body">
-                            Date of Birth <span>*</span>
+                            Age <span>*</span>
                         </label>
-                        <input type="date" className="inputbox body" value={dob} onChange={(e) => setDob(e.target.value)} />
+                        <input
+                            type="number"
+                            className="inputbox body"
+                            min={0}
+                            step={1}
+                            value={age}
+                            onChange={(e) => {
+                                const value = e.target.value
+                                if (Number.isInteger(Number(value)) || value === '') {
+                                    setAge(value)
+                                }
+                            }}
+                        />
                     </div>
 
 
@@ -249,8 +246,8 @@ export default function BodyFat() {
                         <label className="body">
                             Gender <span>*</span>
                         </label>
-                        <select value={gender} onChange={(e) => setGender(e.target.value)} className="dropdown body">
-                            <option value="" disabled hidden>Select Method</option>
+                        <select value={gender} onChange={(e) => setGender(e.target.value)} className="dropdown inputbox body">
+                            <option value="" disabled hidden>Select Gender</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
                         </select>
@@ -275,7 +272,7 @@ export default function BodyFat() {
                         <label className="body">
                             Primary Conditions
                         </label>
-                        <select value={lifestyleCondition} onChange={(e) => setLifestyleCondition(e.target.value)} className="dropdown body">
+                        <select value={lifestyleCondition} onChange={(e) => setLifestyleCondition(e.target.value)} className="dropdown inputbox body">
                             <option value="" disabled hidden>None</option>
                             {Lifestyle_ConditionsList.map((c, i) => <option key={i} value={c}>{c}</option>)}
                         </select>
@@ -292,16 +289,18 @@ export default function BodyFat() {
                         <button className={`body ${type === "TM" ? "toggle-active" : "toggle-disable"}`} onClick={() => { setType("TM"); setSelectedMethod(""); }}>Tape Measurement</button>
                     </div>
 
-                    <select value={selectedMethod} onChange={(e) => setSelectedMethod(e.target.value)} className="dropdown">
-                        <option value="" disabled hidden>Select Method</option>
+                    <div className="method-selector">
+                        <select value={selectedMethod} onChange={(e) => setSelectedMethod(e.target.value)} className="dropdown">
+                            <option value="" disabled hidden>Select Method</option>
+                            {(type === "FC" ? FC_MeasurementMethod : TM_MeasurementMethod)
+                                .map((m, i) => <option key={i} value={m}>{m}</option>)}
+                        </select>
 
-                        {(type === "FC" ? FC_MeasurementMethod : TM_MeasurementMethod)
-                            .map((m, i) => <option key={i} value={m}>{m}</option>)}
-                    </select>
-
-                    <div className="tooltips">
-                        <p className="body tooltip-icon" data-tooltip={tooltip}>i</p>
+                        <div className="tooltips">
+                            <p className="body tooltip-icon" data-tooltip={tooltip}>i</p>
+                        </div>
                     </div>
+
 
                 </div>
 
@@ -338,7 +337,7 @@ export default function BodyFat() {
 
                             <div className="infobox">
                                 <p className="body">BMI</p>
-                                <p className="inputbox body">{bmi ? bmi.toFixed(2) : "-"} — {bmiCategory}</p>
+                                <p className="inputbox body">{bmi ? bmi.toFixed(2) : "-"} - {bmiCategory}</p>
                             </div>
                         </div>
 
@@ -368,6 +367,7 @@ export default function BodyFat() {
 
                 {/* BOTTOM BUTTONS */}
                 <div className="lower-section">
+
                     <div className="cta">
                         {!submit ? (
                             <button className="result-btn pill-button body" onClick={handleSubmit}>
