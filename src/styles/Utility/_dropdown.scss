@@ -6,12 +6,14 @@
     border: 2px solid $gray;
     border-radius: 16px;
 
-    font-size: $body;
-    font-weight: 400;
-    letter-spacing: -.2pt;
+    @extend .body;
 
-    width: 300px;
+    width: 100%;
     height: 48px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     // removes the default chevron
     appearance: none; // standard

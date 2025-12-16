@@ -23,6 +23,22 @@
             .logo-img {
                 height: 48px;
             }
+
+            .title {
+
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                flex-wrap: wrap;
+                row-gap: 0px;
+                column-gap: 8px;
+
+                .version-number {
+                    margin-bottom: -4px;
+                    white-space: nowrap;
+                }
+            }
+
         }
 
         .ctas {

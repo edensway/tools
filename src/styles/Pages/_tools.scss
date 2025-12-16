@@ -147,7 +147,9 @@
                     .name {
                         position: absolute;
                         transform: translate(-50%, -20px);
-                        font-size: $caption;
+
+                        @extend .caption;
+
                         display: flex;
                         flex-direction: column;
                         align-items: center;
@@ -194,7 +196,9 @@
 
                         .diff {
                             margin-left: 2px;
-                            font-size: $caption;
+
+                            @extend .caption;
+
                             color: $accent;
                         }
                     }
@@ -230,6 +234,7 @@
 @media (max-width: 768px) {
     .tool {
 
+
         .tool-container {
 
             .user-section {
@@ -245,7 +250,8 @@
                 align-items: start;
 
                 .method-selector {
-                    flex: 1;
+
+                    width: 100%;
 
                     .tooltips {
                         display: none;
@@ -275,8 +281,12 @@
                     display: flex;
                     width: 100%;
 
-                    .pill-button {
-                        flex: 1;
+                    .pill-button:first-child {
+                        flex: .6;
+                    }
+
+                    .pill-button:last-child {
+                        flex: .4;
                     }
                 }
             }

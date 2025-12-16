@@ -28,7 +28,7 @@
 }
 
 .heading-1 {
-  font-size: 1.75em;
+  font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.6pt;
 }
@@ -39,17 +39,31 @@
 }
 
 .heading-3 {
-  font-size: 1.25em;
+  font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.6pt;
 }
 
-.body {
-  font-size: 1em;
+.body, .dropdown {
+  font-size: 1rem;
   font-weight: 400;
   letter-spacing: -0.2pt;
 }
 
+@media (max-width: 768px) {
+  .heading-1 {
+    font-size: 1.25rem;
+  }
+  .heading-3 {
+    font-size: 1rem;
+  }
+  .body, .dropdown {
+    font-size: 0.9rem;
+  }
+  .caption, .tool .tool-container .result-section .bmi-scale .label .name, .tool .tool-container .result-section .result .infobox .inputbox .diff {
+    font-size: 0.75rem;
+  }
+}
 .navigation {
   border-bottom: 2px solid rgba(34, 34, 34, 0.1019607843);
   margin-bottom: 16px;
@@ -69,6 +83,19 @@
 }
 .navigation .nav-container .logo-section .logo-img {
   height: 48px;
+}
+.navigation .nav-container .logo-section .title {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+  row-gap: 0px;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+}
+.navigation .nav-container .logo-section .title .version-number {
+  margin-bottom: -4px;
+  white-space: nowrap;
 }
 .navigation .nav-container .ctas {
   display: flex;
@@ -196,7 +223,6 @@
 .tool .tool-container .result-section .bmi-scale .label .name {
   position: absolute;
   transform: translate(-50%, -20px);
-  font-size: 0.85em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -231,7 +257,6 @@
 }
 .tool .tool-container .result-section .result .infobox .inputbox .diff {
   margin-left: 2px;
-  font-size: 0.85em;
   color: #d90a59;
 }
 .tool .tool-container .lower-section {
@@ -263,7 +288,7 @@
     align-items: start;
   }
   .tool .tool-container .method-section .method-selector {
-    flex: 1;
+    width: 100%;
   }
   .tool .tool-container .method-section .method-selector .tooltips {
     display: none;
@@ -285,8 +310,11 @@
     display: flex;
     width: 100%;
   }
-  .tool .tool-container .lower-section .cta .pill-button {
-    flex: 1;
+  .tool .tool-container .lower-section .cta .pill-button:first-child {
+    flex: 0.6;
+  }
+  .tool .tool-container .lower-section .cta .pill-button:last-child {
+    flex: 0.4;
   }
 }
 .button, .pill-button, .toggle .toggle-disable, .toggle .toggle-active, .btn-unactive {
@@ -371,11 +399,11 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 0px 16px;
   border: 2px solid #f2f2f2;
   border-radius: 16px;
-  font-size: 1em;
-  font-weight: 400;
-  letter-spacing: -0.2pt;
-  width: 300px;
+  width: 100%;
   height: 48px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;

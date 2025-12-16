@@ -10,7 +10,7 @@ export default function Navigation() {
                     <a href="https://edensway.in/" target="_blank">
                         <img src={logo} className="logo-img" alt="Website Logo" />
                     </a>
-                    <h1 className="heading-1 title">Body Measurement Calculator <small>(Beta v0.1)</small></h1>
+                    <h1 className="heading-1 title">Body Measurement Calculator <span className="version-number body">(Beta v0.2)</span></h1>
                 </div>
 
 

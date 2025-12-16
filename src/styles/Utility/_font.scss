@@ -1,7 +1,7 @@
-$heading-1: 1.75em;
-$heading-3: 1.25em;
-$body: 1em;
-$caption: .85em;
+$heading-1: 1.75rem;
+$heading-3: 1.25rem;
+$body: 1rem;
+$caption: .85rem;
 
 * {
     font-family: "DM Sans", sans-serif;
@@ -30,4 +30,22 @@ $caption: .85em;
     font-size: $body;
     font-weight: 400;
     letter-spacing: -.2pt;
+}
+
+@media (max-width: 768px) {
+    .heading-1 {
+        font-size: 1.25rem;
+    }
+
+    .heading-3 {
+        font-size: 1rem;
+    }
+
+    .body {
+        font-size: .90rem;
+    }
+
+    .caption {
+        font-size: .75rem;
+    }
 }
