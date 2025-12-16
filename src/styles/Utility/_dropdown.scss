@@ -1,11 +1,12 @@
 @use "_colour.scss" as *;
+@use "_font.scss" as *;
 
 .dropdown {
     padding: 0px 16px;
     border: 2px solid $gray;
     border-radius: 16px;
 
-    font-size: 12pt;
+    font-size: $body;
     font-weight: 400;
     letter-spacing: -.2pt;
 

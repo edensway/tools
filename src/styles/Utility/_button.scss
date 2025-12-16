@@ -11,7 +11,15 @@
     border: none;
     border-radius: 8pt;
 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     transition: 200ms;
+
+
+    max-width: 100%;
+    min-width: 0;
 }
 
 .button:hover {
@@ -39,6 +47,7 @@
 .toggle {
 
     // width: fit-content;
+    max-width: 100%;
 
     display: flex;
 

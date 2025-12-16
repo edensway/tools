@@ -1,4 +1,5 @@
 @use "./Utility/_colour.scss" as *;
+@use "./Utility/_font.scss" as *;
 
 @use "./Components/navigation";
 
@@ -27,9 +28,6 @@ body {
         url(../assets/wallpaper.svg);
     background-position: 0px 0px;
     background-size: cover, cover;
-
-    font-family: "DM Sans", sans-serif;
-    font-optical-sizing: auto;
 }
 
 .container {
@@ -39,30 +37,6 @@ body {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.heading-1 {
-    font-size: 20pt;
-    font-weight: 600;
-    letter-spacing: -.6pt;
-
-    small {
-        font-size: 16px;
-        font-weight: 400;
-        letter-spacing: -.3pt;
-    }
-}
-
-.heading-3 {
-    font-size: 16pt;
-    font-weight: 600;
-    letter-spacing: -.6pt;
-}
-
-.body {
-    font-size: 12pt;
-    font-weight: 400;
-    letter-spacing: -.2pt;
 }
 
 /* -------------------------------

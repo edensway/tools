@@ -1,0 +1,33 @@
+$heading-1: 1.75em;
+$heading-3: 1.25em;
+$body: 1em;
+$caption: .85em;
+
+* {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.heading-1 {
+    font-size: $heading-1;
+    font-weight: 600;
+    letter-spacing: -.6pt;
+
+    small {
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: -.3pt;
+    }
+}
+
+.heading-3 {
+    font-size: $heading-3;
+    font-weight: 600;
+    letter-spacing: -.6pt;
+}
+
+.body {
+    font-size: $body;
+    font-weight: 400;
+    letter-spacing: -.2pt;
+}

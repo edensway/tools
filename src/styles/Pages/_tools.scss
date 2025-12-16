@@ -1,4 +1,5 @@
 @use "../Utility/_colour.scss" as *;
+@use "../Utility/_font.scss" as *;
 
 .tool {
 
@@ -146,7 +147,7 @@
                     .name {
                         position: absolute;
                         transform: translate(-50%, -20px);
-                        font-size: 14px;
+                        font-size: $caption;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
@@ -193,7 +194,7 @@
 
                         .diff {
                             margin-left: 2px;
-                            font-size: 14px;
+                            font-size: $caption;
                             color: $accent;
                         }
                     }
@@ -242,6 +243,14 @@
             .method-section {
                 flex-direction: column;
                 align-items: start;
+
+                .method-selector {
+                    flex: 1;
+
+                    .tooltips {
+                        display: none;
+                    }
+                }
             }
 
             .caliper-method {
