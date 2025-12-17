@@ -66,23 +66,21 @@ export default function BMR() {
     const calorieTarget = useMemo(() => {
         if (!tdee) return null;
 
-        switch (goal) {
-            case "lose":
-                return {
-                    note: "Calorie Deficit (~15%)",
-                    calories: tdee * 0.85,
-                };
-            case "gain":
-                return {
-                    note: "Calorie Surplus (~12%)",
-                    calories: tdee * 1.12,
-                };
-            default:
-                return {
-                    note: "Maintenance Calories",
-                    calories: tdee,
-                };
+        if (goal === "lose") {
+            return {
+                note: "Calorie Deficit (~15%)",
+                calories: tdee * 0.85,
+            };
         }
+
+        if (goal === "gain") {
+            return {
+                note: "Calorie Surplus (~12%)",
+                calories: tdee * 1.12,
+            };
+        }
+
+        return null;
     }, [tdee, goal]);
 
     // ------------------------
