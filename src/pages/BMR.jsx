@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 import logo from "../assets/logo.svg";
 import who_logo from "../assets/bmi/WHO_logo.svg";
@@ -10,11 +10,34 @@ export default function BMR() {
     const [unit, setUnit] = useState("Metrics");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
-    const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
+    const [weight, setWeight] = useState("");
     const [activity, setActivity] = useState("sedentary");
     const [goal, setGoal] = useState("lose");
     const [submit, setSubmit] = useState(false);
+
+    // ------------------------
+    // LOAD FROM LOCALSTORAGE
+    // ------------------------
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem("userForm"));
+        if (!saved) return;
+
+        setUnit(saved.unit ?? "Metrics");
+        setAge(saved.age ?? "");
+        setGender(saved.gender ?? "");
+        setHeight(saved.height ?? "");
+    }, []);
+
+    // ------------------------
+    // SAVE TO LOCALSTORAGE
+    // ------------------------
+    useEffect(() => {
+        localStorage.setItem(
+            "userForm",
+            JSON.stringify({ unit, age, gender, height })
+        );
+    }, [unit, age, gender, height]);
 
     // ------------------------
     // UNIT CONVERSIONS
@@ -66,20 +89,8 @@ export default function BMR() {
     const calorieTarget = useMemo(() => {
         if (!tdee) return null;
 
-        if (goal === "lose") {
-            return {
-                note: "Calorie Deficit (~15%)",
-                calories: tdee * 0.85,
-            };
-        }
-
-        if (goal === "gain") {
-            return {
-                note: "Calorie Surplus (~12%)",
-                calories: tdee * 1.12,
-            };
-        }
-
+        if (goal === "lose") return { note: "Calorie Deficit (~15%)", calories: tdee * 0.85 };
+        if (goal === "gain") return { note: "Calorie Surplus (~12%)", calories: tdee * 1.12 };
         return null;
     }, [tdee, goal]);
 
@@ -97,6 +108,8 @@ export default function BMR() {
     const handleRestart = () => {
         if (!window.confirm("Are you sure you want to restart?")) return;
 
+        localStorage.removeItem("userForm"); // clear stored unit, age, gender, height
+
         setAge("");
         setGender("");
         setWeight("");
@@ -108,6 +121,7 @@ export default function BMR() {
     };
 
     const handlePrint = () => window.print();
+
 
     // ============================================================
     // RENDER
@@ -160,7 +174,7 @@ export default function BMR() {
                             value={gender}
                             onChange={e => setGender(e.target.value)}
                         >
-                            <option value="" disabled hidden>Select gender</option>
+                            <option value="" disabled hidden>Select Gender</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
                         </select>
@@ -261,9 +275,14 @@ export default function BMR() {
                 <div className="lower-section">
                     <div className="cta">
                         {!submit ? (
-                            <button className="result-btn pill-button body" onClick={handleSubmit}>
-                                View results
-                            </button>
+                            <>
+                                <button className="result-btn pill-button body" onClick={handleSubmit}>
+                                    View Results
+                                </button>
+                                <button className="print-btn pill-button body" onClick={handleRestart}>
+                                    Restart
+                                </button>
+                            </>
                         ) : (
                             <>
                                 <button className="refresh-btn pill-button body" onClick={handleRestart}>

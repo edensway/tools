@@ -1,25 +1,24 @@
 import { useState, useMemo, useEffect } from "react";
 
-import CaliperForm from "../components/Engine/CaliperEngine.jsx"
-import TapeForm from "../components/Engine/TapeEngine.jsx"
+import CaliperForm from "../components/Engine/CaliperEngine.jsx";
+import TapeForm from "../components/Engine/TapeEngine.jsx";
 
 import logo from "../assets/logo.svg";
 
 export default function BodyFat() {
-
     // ---------------- STATE ----------------
-    const [gender, setGender] = useState("");
     const [unit, setUnit] = useState("Metrics");
     const [age, setAge] = useState("");
-    const [weight, setWeight] = useState("");
+    const [gender, setGender] = useState("");
     const [height, setHeight] = useState("");
+    const [weight, setWeight] = useState("");
     const [type, setType] = useState("FC");
     const [lifestyleCondition, setLifestyleCondition] = useState([]);
     const [selectedMethod, setSelectedMethod] = useState("");
     const [bodyDensity, setBodyDensity] = useState(null);
     const [bodyFatPercentOverride, setBodyFatPercentOverride] = useState(null);
     const [submit, setSubmit] = useState(false);
-    const [tooltip, setTooltip] = useState("Please select a method to measure body fat.")
+    const [tooltip, setTooltip] = useState("Please select a method to measure body fat.");
 
     // ---------------- METHOD LISTS ----------------
     const FC_MeasurementMethod = [
@@ -58,7 +57,25 @@ export default function BodyFat() {
         "Surgical (Post-operative / Pre-operative Condition)",
         "Cancer (Malignancy / Neoplasm)",
         "Other",
-    ]
+    ];
+
+    // ---------------- LOCALSTORAGE ----------------
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem("userForm"));
+        if (!saved) return;
+
+        setUnit(saved.unit ?? "Metrics");
+        setAge(saved.age ?? "");
+        setGender(saved.gender ?? "");
+        setHeight(saved.height ?? "");
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(
+            "userForm",
+            JSON.stringify({ unit, age, gender, height })
+        );
+    }, [unit, age, gender, height]);
 
     // ---------------- UNIT CONVERSIONS ----------------
     const weightInKg = useMemo(() => {
@@ -70,7 +87,6 @@ export default function BodyFat() {
         if (!height) return 0;
         return unit === "Imperial" ? parseFloat(height) * 2.54 : parseFloat(height);
     }, [height, unit]);
-
 
     // ---------------- BMI ----------------
     const bmi = useMemo(() => {
@@ -88,7 +104,6 @@ export default function BodyFat() {
         return "Obesity Class III";
     }, [bmi]);
 
-
     // ---------------- BODY FAT % ----------------
     const bodyFatPercent = useMemo(() => {
         if (bodyFatPercentOverride !== null) return bodyFatPercentOverride;
@@ -96,29 +111,23 @@ export default function BodyFat() {
         return 495 / bodyDensity - 450; // Siri Equation
     }, [bodyDensity, bodyFatPercentOverride]);
 
-
-    // ---------------- FAT MASS ----------------
     const bodyFatMassKg = useMemo(() => {
         if (!weightInKg || !bodyFatPercent) return null;
         return (weightInKg * bodyFatPercent) / 100;
     }, [weightInKg, bodyFatPercent]);
 
-
-    // ---------------- IDEAL BODY WEIGHT ----------------
     const idealBodyWeight = useMemo(() => {
         if (!heightInCm) return null;
         const hIn = heightInCm / 2.54;
-
         return gender === "M"
             ? 50 + 2.3 * (hIn - 60)
             : 45.5 + 2.3 * (hIn - 60);
     }, [gender, heightInCm]);
 
-
-    // ---------------- SUBMIT ----------------
+    // ---------------- SUBMIT / RESTART ----------------
     const handleSubmit = () => {
-        if (!weight || !height || !age) {
-            alert("Please enter your Weight, Height, and Age.");
+        if (!weight || !height || !age || !gender) {
+            alert("Please enter Weight, Height, Age, and Gender.");
             return;
         }
         setSubmit(true);
@@ -127,25 +136,23 @@ export default function BodyFat() {
     const handleRestart = () => {
         if (!window.confirm("Are you sure you want to restart?")) return;
 
-        setType("FC")
+        localStorage.removeItem("userForm"); // clear saved unit, age, gender, height
+
+        setUnit("Metrics");
         setAge("");
         setGender("");
-        setWeight("");
         setHeight("");
+        setWeight("");
+        setType("FC");
         setLifestyleCondition([]);
-        setUnit("Metrics");
-        setSubmit(false);
         setSelectedMethod("");
         setBodyDensity(null);
-        setBodyFatPercentOverride(null)
-        setTooltip("Please select a method to measure body fat.")
+        setBodyFatPercentOverride(null);
+        setSubmit(false);
+        setTooltip("Please select a method to measure body fat.");
     };
 
-
-    // ---------------- PRINT ----------------
-    const handlePrint = () => {
-        window.print();
-    };
+    const handlePrint = () => window.print();
 
     // ---------------- TOOLTIPS ----------------
     useEffect(() => {
@@ -364,9 +371,15 @@ export default function BodyFat() {
 
                     <div className="cta">
                         {!submit ? (
-                            <button className="result-btn pill-button body" onClick={handleSubmit}>
-                                View Results
-                            </button>
+                            <>
+                                <button className="result-btn pill-button body" onClick={handleSubmit}>
+                                    View Results
+                                </button>
+                                <button className="print-btn pill-button body" onClick={handleRestart}>
+                                    Restart
+                                </button>
+                            </>
+
                         ) : (
                             <>
                                 <button className="refresh-btn pill-button body" onClick={handleRestart}>

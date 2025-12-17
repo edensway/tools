@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import cdcLms from "../data/cdc_bmi_lms.json";
 
 import logo from "../assets/logo.svg";
@@ -28,9 +28,32 @@ export default function BMI() {
     const [unit, setUnit] = useState("Metrics");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
-    const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
+    const [weight, setWeight] = useState("");
     const [submit, setSubmit] = useState(false);
+
+    // ------------------------
+    // LOAD FROM LOCALSTORAGE
+    // ------------------------
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem("userForm"));
+        if (!saved) return;
+
+        setUnit(saved.unit ?? "Metrics");
+        setAge(saved.age ?? "");
+        setGender(saved.gender ?? "");
+        setHeight(saved.height ?? "");
+    }, []);
+
+    // ------------------------
+    // SAVE TO LOCALSTORAGE
+    // ------------------------
+    useEffect(() => {
+        localStorage.setItem(
+            "userForm",
+            JSON.stringify({ unit, age, gender, height })
+        );
+    }, [unit, age, gender, height]);
 
     // ------------------------
     // BASIC COMPUTED VALUES
@@ -217,6 +240,8 @@ export default function BMI() {
     const handleRestart = () => {
         if (!window.confirm("Are you sure you want to restart?")) return;
 
+        localStorage.removeItem("userForm"); // clear stored data
+
         setAge("");
         setGender("");
         setWeight("");
@@ -391,9 +416,14 @@ export default function BMI() {
                 <div className="lower-section">
                     <div className="cta">
                         {!submit ? (
-                            <button className="result-btn pill-button body" onClick={handleSubmit}>
-                                View Results
-                            </button>
+                            <>
+                                <button className="result-btn pill-button body" onClick={handleSubmit}>
+                                    View Results
+                                </button>
+                                <button className="print-btn pill-button body" onClick={handleRestart}>
+                                    Restart
+                                </button>
+                            </>
                         ) : (
                             <>
                                 <button className="refresh-btn pill-button body" onClick={handleRestart}>
