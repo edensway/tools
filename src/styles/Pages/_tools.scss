@@ -281,12 +281,8 @@
                     display: flex;
                     width: 100%;
 
-                    .pill-button:first-child {
-                        flex: .6;
-                    }
-
-                    .pill-button:last-child {
-                        flex: .4;
+                    .pill-button {
+                        flex: 1;
                     }
                 }
             }

@@ -329,19 +329,13 @@ export default function BodyFat() {
                     <div className="result-section">
                         <h3 className="heading-3">Results</h3>
 
-                        <div className="result basic-result">
-                            <div className="infobox">
-                                <p className="body">Age</p>
-                                <p className="inputbox body">{age} Yrs</p>
-                            </div>
+                        <div className="result body-result">
 
                             <div className="infobox">
-                                <p className="body">BMI</p>
+                                <p className="body">Body Mass Index (BMI)</p>
                                 <p className="inputbox body">{bmi ? bmi.toFixed(2) : "-"} - {bmiCategory}</p>
                             </div>
-                        </div>
 
-                        <div className="result body-result">
                             <div className="infobox">
                                 <p className="body">Body Fat %</p>
                                 <p className="inputbox body">{bodyFatPercent ? bodyFatPercent.toFixed(2) : "-"} %</p>
@@ -353,7 +347,7 @@ export default function BodyFat() {
                             </div>
 
                             <div className="infobox">
-                                <p className="body">Ideal Body Weight</p>
+                                <p className="body">Ideal Body Weight (IBW)</p>
                                 <p className="inputbox body">
                                     {idealBodyWeight.toFixed(2)} <small>kg</small>{" "}
                                     <span className="diff">

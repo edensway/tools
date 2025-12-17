@@ -10,7 +10,7 @@ export default function Navigation() {
                     <a href="https://edensway.in/" target="_blank">
                         <img src={logo} className="logo-img" alt="Website Logo" />
                     </a>
-                    <h1 className="heading-1 title">Body Measurement Calculator <span className="version-number body">(Beta v0.2)</span></h1>
+                    <h1 className="heading-1 title">Body Measurement Calculator <span className="version-number body">(Beta v0.3)</span></h1>
                 </div>
 
 
@@ -21,11 +21,11 @@ export default function Navigation() {
                         className={({ isActive }) => (isActive ? "button" : "btn-unactive")}>
                         BMI
                     </NavLink>
-                    {/* <NavLink
+                    <NavLink
                         to="/bmr"
-                        className={({ isActive }) => (isActive ? "btn-active" : "button")}>
+                        className={({ isActive }) => (isActive ? "button" : "btn-unactive")}>
                         BMR
-                    </NavLink> */}
+                    </NavLink>
                     <NavLink
                         to="/body-fat"
                         className={({ isActive }) => (isActive ? "button" : "btn-unactive")}>
