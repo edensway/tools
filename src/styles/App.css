@@ -296,6 +296,9 @@
   .tool .tool-container .caliper-method {
     flex-direction: column;
   }
+  .tool .tool-container .result-section {
+    padding: 18px 24px 24px 24px;
+  }
   .tool .tool-container .result-section .result {
     flex-direction: column;
   }
@@ -310,11 +313,8 @@
     display: flex;
     width: 100%;
   }
-  .tool .tool-container .lower-section .cta .pill-button:first-child {
-    flex: 0.6;
-  }
-  .tool .tool-container .lower-section .cta .pill-button:last-child {
-    flex: 0.4;
+  .tool .tool-container .lower-section .cta .pill-button {
+    flex: 1;
   }
 }
 .button, .pill-button, .toggle .toggle-disable, .toggle .toggle-active, .btn-unactive {
