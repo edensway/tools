@@ -59,7 +59,9 @@ export default function BodyFat() {
         "Other",
     ];
 
-    // ---------------- LOCALSTORAGE ----------------
+    // ------------------------
+    // LOAD FROM LOCALSTORAGE
+    // ------------------------
     useEffect(() => {
         const saved = JSON.parse(localStorage.getItem("userForm"));
         if (!saved) return;
@@ -70,12 +72,30 @@ export default function BodyFat() {
         setHeight(saved.height ?? "");
     }, []);
 
+    // ------------------------
+    // SAVE TO LOCALSTORAGE
+    // ------------------------
     useEffect(() => {
         localStorage.setItem(
             "userForm",
             JSON.stringify({ unit, age, gender, height })
         );
     }, [unit, age, gender, height]);
+
+    // ------------------------
+    // LOAD WEIGHT FROM SESSIONSTORAGE
+    // ------------------------
+    useEffect(() => {
+        const savedWeight = sessionStorage.getItem("userWeight");
+        if (savedWeight) setWeight(savedWeight ?? "");
+    }, []);
+
+    // ------------------------
+    // SAVE WEIGHT TO SESSIONSTORAGE
+    // ------------------------
+    useEffect(() => {
+        if (weight) sessionStorage.setItem("userWeight", weight);
+    }, [weight]);
 
     // ---------------- UNIT CONVERSIONS ----------------
     const weightInKg = useMemo(() => {
@@ -87,22 +107,6 @@ export default function BodyFat() {
         if (!height) return 0;
         return unit === "Imperial" ? parseFloat(height) * 2.54 : parseFloat(height);
     }, [height, unit]);
-
-    // ---------------- BMI ----------------
-    const bmi = useMemo(() => {
-        if (!weightInKg || !heightInCm) return null;
-        return weightInKg / ((heightInCm / 100) ** 2);
-    }, [weightInKg, heightInCm]);
-
-    const bmiCategory = useMemo(() => {
-        if (!bmi) return "-";
-        if (bmi < 18.5) return "Underweight";
-        if (bmi < 25) return "Normal";
-        if (bmi < 30) return "Overweight";
-        if (bmi < 35) return "Obesity Class I";
-        if (bmi < 40) return "Obesity Class II";
-        return "Obesity Class III";
-    }, [bmi]);
 
     // ---------------- BODY FAT % ----------------
     const bodyFatPercent = useMemo(() => {
@@ -126,10 +130,23 @@ export default function BodyFat() {
 
     // ---------------- SUBMIT / RESTART ----------------
     const handleSubmit = () => {
-        if (!weight || !height || !age || !gender) {
-            alert("Please enter Weight, Height, Age, and Gender.");
+        const missingFields = [];
+        if (!age) missingFields.push("Age");
+        if (!gender) missingFields.push("Gender");
+        if (!height) missingFields.push("Height");
+        if (!weight) missingFields.push("Weight");
+        if (!selectedMethod) missingFields.push("Measurement Method");
+
+        if (missingFields.length > 0) {
+            alert(`Please enter/select ${missingFields.join(", ")}`);
             return;
         }
+
+        if (bodyFatPercent === null || bodyFatMassKg === null) {
+            alert("Measurements are not calculated yet. Please complete the form.");
+            return;
+        }
+
         setSubmit(true);
     };
 
@@ -137,6 +154,7 @@ export default function BodyFat() {
         if (!window.confirm("Are you sure you want to restart?")) return;
 
         localStorage.removeItem("userForm"); // clear saved unit, age, gender, height
+        sessionStorage.removeItem("userWeight"); // clear saved weight
 
         setUnit("Metrics");
         setAge("");
@@ -337,11 +355,6 @@ export default function BodyFat() {
                         <h3 className="heading-3">Results</h3>
 
                         <div className="result body-result">
-
-                            <div className="infobox">
-                                <p className="body">Body Mass Index (BMI)</p>
-                                <p className="inputbox body">{bmi ? bmi.toFixed(2) : "-"} - {bmiCategory}</p>
-                            </div>
 
                             <div className="infobox">
                                 <p className="body">Body Fat %</p>

@@ -56,6 +56,21 @@ export default function BMI() {
     }, [unit, age, gender, height]);
 
     // ------------------------
+    // LOAD WEIGHT FROM SESSIONSTORAGE
+    // ------------------------
+    useEffect(() => {
+        const savedWeight = sessionStorage.getItem("userWeight");
+        if (savedWeight) setWeight(savedWeight ?? "");
+    }, []);
+
+    // ------------------------
+    // SAVE WEIGHT TO SESSIONSTORAGE
+    // ------------------------
+    useEffect(() => {
+        if (weight) sessionStorage.setItem("userWeight", weight);
+    }, [weight]);
+
+    // ------------------------
     // BASIC COMPUTED VALUES
     // ------------------------
     const isChild = useMemo(() => parseInt(age) < 18, [age]);
@@ -229,11 +244,20 @@ export default function BMI() {
     // ------------------------
     // BUTTON HANDLERS
     // ------------------------
+
+    // ---------------- SUBMIT / RESTART ----------------
     const handleSubmit = () => {
-        if (!weight || !height || !age || !gender) {
-            alert("Please enter all required fields.");
+        const missingFields = [];
+        if (!age) missingFields.push("Age");
+        if (!gender) missingFields.push("Gender");
+        if (!height) missingFields.push("Height");
+        if (!weight) missingFields.push("Weight");
+
+        if (missingFields.length > 0) {
+            alert(`Please enter/select ${missingFields.join(", ")}`);
             return;
         }
+
         setSubmit(true);
     };
 
@@ -241,6 +265,7 @@ export default function BMI() {
         if (!window.confirm("Are you sure you want to restart?")) return;
 
         localStorage.removeItem("userForm"); // clear stored data
+        sessionStorage.removeItem("userWeight"); // clear saved weight
 
         setAge("");
         setGender("");

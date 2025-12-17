@@ -40,6 +40,21 @@ export default function BMR() {
     }, [unit, age, gender, height]);
 
     // ------------------------
+    // LOAD WEIGHT FROM SESSIONSTORAGE
+    // ------------------------
+    useEffect(() => {
+        const savedWeight = sessionStorage.getItem("userWeight");
+        if (savedWeight) setWeight(savedWeight ?? "");
+    }, []);
+
+    // ------------------------
+    // SAVE WEIGHT TO SESSIONSTORAGE
+    // ------------------------
+    useEffect(() => {
+        if (weight) sessionStorage.setItem("userWeight", weight);
+    }, [weight]);
+
+    // ------------------------
     // UNIT CONVERSIONS
     // ------------------------
     const weightInKg = useMemo(() => {
@@ -97,11 +112,20 @@ export default function BMR() {
     // ------------------------
     // HANDLERS
     // ------------------------
+
+    // ---------------- SUBMIT / RESTART ----------------
     const handleSubmit = () => {
-        if (!age || !gender || !weight || !height) {
-            alert("Please fill in all required fields.");
+        const missingFields = [];
+        if (!age) missingFields.push("Age");
+        if (!gender) missingFields.push("Gender");
+        if (!height) missingFields.push("Height");
+        if (!weight) missingFields.push("Weight");
+
+        if (missingFields.length > 0) {
+            alert(`Please enter/select ${missingFields.join(", ")}`);
             return;
         }
+
         setSubmit(true);
     };
 
@@ -109,6 +133,7 @@ export default function BMR() {
         if (!window.confirm("Are you sure you want to restart?")) return;
 
         localStorage.removeItem("userForm"); // clear stored unit, age, gender, height
+        sessionStorage.removeItem("userWeight"); // clear saved weight
 
         setAge("");
         setGender("");
