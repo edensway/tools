@@ -37,6 +37,11 @@ $caption: .85rem;
     font-weight: 400;
 }
 
+.mono {
+    @extend .body;
+    font-family: "DM Mono", monospace;
+}
+
 
 @media (max-width: 768px) {
     .heading-1 {

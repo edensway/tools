@@ -415,22 +415,22 @@ export default function BodyComposition() {
                         <div className="result body-result">
                             <div className="infobox">
                                 <p className="body">Body Fat %</p>
-                                <p className="inputbox body">{bodyFatPercent?.toFixed(2) ?? "-"} %</p>
+                                <p className="inputbox mono">{bodyFatPercent?.toFixed(2) ?? "-"}<small> %</small></p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Body Fat Mass</p>
-                                <p className="inputbox body">{bodyFatMassKg?.toFixed(2) ?? "-"} kg</p>
+                                <p className="inputbox mono">{bodyFatMassKg?.toFixed(2) ?? "-"}<small> kg</small></p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Lean Mass %</p>
-                                <p className="inputbox body">{leanMassPercent?.toFixed(2) ?? "-"} %</p>
+                                <p className="inputbox mono">{leanMassPercent?.toFixed(2) ?? "-"}<small> %</small></p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Lean Body Mass (LBM)</p>
-                                <p className="inputbox body">{leanBodyMassKg?.toFixed(2) ?? "-"} kg</p>
+                                <p className="inputbox mono">{leanBodyMassKg?.toFixed(2) ?? "-"}<small> kg</small></p>
                             </div>
 
                         </div>
@@ -439,26 +439,30 @@ export default function BodyComposition() {
 
                             <div className="infobox">
                                 <p className="body">Fat : Lean Ratio</p>
-                                <p className="inputbox body">{fatLeanRatio?.toFixed(2) ?? "-"}</p>
+                                <p className="inputbox mono">
+                                    {fatLeanRatio
+                                        ? `1:${Number((1 / fatLeanRatio).toFixed(1))}`
+                                        : "-"}
+                                </p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Metabolically Active Mass</p>
-                                <p className="inputbox body">{leanMassDrivenBMR?.toFixed(0) ?? "-"} kcal/day</p>
+                                <p className="inputbox mono">{leanMassDrivenBMR?.toFixed(0) ?? "-"}<small> kcal/day</small></p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Target Lean Mass</p>
-                                <p className="inputbox body">{targetLeanMass?.toFixed(2) ?? "-"} kg</p>
+                                <p className="inputbox mono">{targetLeanMass?.toFixed(2) ?? "-"}<small> kg</small></p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Ideal Body Weight (IBW)</p>
-                                <p className="inputbox body">
-                                    {idealBodyWeight?.toFixed(2) ?? "-"} kg
+                                <p className="inputbox mono">
+                                    {idealBodyWeight?.toFixed(2) ?? "-"}<small> kg</small>
                                     {idealBodyWeight ? (
-                                        <span className="diff">
-                                            ({weightInKg - idealBodyWeight > 0 ? "+" : ""}{(weightInKg - idealBodyWeight).toFixed(2)} kg)
+                                        <span className="diff mono">
+                                            ({weightInKg - idealBodyWeight > 0 ? "+" : ""}{(weightInKg - idealBodyWeight).toFixed(2)}<small> kg</small>)
                                         </span>
                                     ) : null}
                                 </p>

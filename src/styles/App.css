@@ -44,7 +44,7 @@
   letter-spacing: -0.6pt;
 }
 
-.body, .dropdown {
+.body, .dropdown, .mono {
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: -0.2pt;
@@ -55,6 +55,10 @@
   font-weight: 400;
 }
 
+.mono {
+  font-family: "DM Mono", monospace;
+}
+
 @media (max-width: 768px) {
   .heading-1 {
     font-size: 1.25rem;
@@ -62,7 +66,7 @@
   .heading-3 {
     font-size: 1rem;
   }
-  .body, .dropdown {
+  .body, .dropdown, .mono {
     font-size: 0.9rem;
   }
   .caption, .tool .tool-container .result-section .bmi-scale .label .name, .tool .tool-container .result-section .result .infobox .inputbox .diff {

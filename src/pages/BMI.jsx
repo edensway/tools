@@ -415,17 +415,17 @@ export default function BMI() {
 
                             <div className="infobox">
                                 <p className="body">Body Mass Index (BMI)</p>
-                                <p className="inputbox body">
-                                    {bmi ? bmi.toFixed(2) : "-"}{" "}
-                                    <small>kg/m<sup>2</sup></small>
+                                <p className="inputbox mono">
+                                    {bmi ? bmi.toFixed(2) : "-"}
+                                    <small> kg/m<sup>2</sup></small>
                                 </p>
                             </div>
 
                             {!isChild && idealBodyWeight && (
                                 <div className="infobox">
                                     <p className="body">Ideal Body Weight (IBW)</p>
-                                    <p className="inputbox body">
-                                        {idealBodyWeight.toFixed(2)} <small>kg</small>{" "}
+                                    <p className="inputbox mono">
+                                        {idealBodyWeight.toFixed(2)}<small> kg</small>{" "}
                                         <span className="diff">
                                             ({weightInKg - idealBodyWeight > 0 ? "+" : ""}{(weightInKg - idealBodyWeight).toFixed(2)} <small>kg</small>)
                                         </span>

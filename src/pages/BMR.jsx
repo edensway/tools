@@ -270,24 +270,24 @@ export default function BMR() {
 
                             <div className="infobox">
                                 <p className="body">Basal Metabolic Rate (BMR)</p>
-                                <p className="inputbox body">
-                                    {bmr?.toFixed(0)} <small>kcal/day</small>
+                                <p className="inputbox mono">
+                                    {bmr?.toFixed(0)}<small> kcal/day</small>
                                 </p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Total Daily Energy Expenditure (TDEE)</p>
-                                <p className="inputbox body">
-                                    {tdee?.toFixed(0)} <small>kcal/day</small>
+                                <p className="inputbox mono">
+                                    {tdee?.toFixed(0)}<small> kcal/day</small>
                                 </p>
                             </div>
 
                             {calorieTarget && (
                                 <div className="infobox">
                                     <p className="body">{calorieTarget.note}</p>
-                                    <p className="inputbox body">
-                                        {calorieTarget.calories.toFixed(0)}{" "}
-                                        <small>kcal/day</small>
+                                    <p className="inputbox mono">
+                                        {calorieTarget.calories.toFixed(0)}
+                                        <small> kcal/day</small>
                                     </p>
                                 </div>
                             )}
