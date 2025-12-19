@@ -5,7 +5,7 @@ import TapeForm from "../components/Engine/TapeEngine.jsx";
 
 import logo from "../assets/logo.svg";
 
-export default function BodyFat() {
+export default function BodyComposition() {
     // ---------------- STATE ----------------
     const [unit, setUnit] = useState("Metrics");
     const [age, setAge] = useState("");
@@ -120,6 +120,23 @@ export default function BodyFat() {
         return (weightInKg * bodyFatPercent) / 100;
     }, [weightInKg, bodyFatPercent]);
 
+    // ---------------- LEAN BODY MASS ----------------
+    const leanBodyMassKg = useMemo(() => {
+        if (!weightInKg || !bodyFatMassKg) return null;
+        return weightInKg - bodyFatMassKg;
+    }, [weightInKg, bodyFatMassKg]);
+
+    const leanMassPercent = useMemo(() => {
+        if (!leanBodyMassKg || !weightInKg) return null;
+        return (leanBodyMassKg / weightInKg) * 100;
+    }, [leanBodyMassKg, weightInKg]);
+
+    // Estimated resting metabolism driven by lean mass (Katch–McArdle logic)
+    const leanMassDrivenBMR = useMemo(() => {
+        if (!leanBodyMassKg) return null;
+        return 370 + (21.6 * leanBodyMassKg);
+    }, [leanBodyMassKg]);
+
     const idealBodyWeight = useMemo(() => {
         if (!heightInCm) return null;
         const hIn = heightInCm / 2.54;
@@ -127,6 +144,46 @@ export default function BodyFat() {
             ? 50 + 2.3 * (hIn - 60)
             : 45.5 + 2.3 * (hIn - 60);
     }, [gender, heightInCm]);
+
+    // ---------------- FAT : LEAN RATIO ----------------
+    const fatLeanRatio = useMemo(() => {
+        if (!bodyFatMassKg || !leanBodyMassKg) return null;
+        return bodyFatMassKg / leanBodyMassKg;
+    }, [bodyFatMassKg, leanBodyMassKg]);
+
+    // ---------------- TARGET LEAN MASS ----------------
+    const targetLeanMass = useMemo(() => {
+        if (!idealBodyWeight) return null;
+        return idealBodyWeight * 0.75; // example goal: 75% of IBW
+    }, [idealBodyWeight]);
+
+    const muscleStatus = useMemo(() => {
+        if (!leanBodyMassKg || !idealBodyWeight) return "—";
+
+        if (weightInKg < idealBodyWeight * 0.95 && bodyFatPercent < 15) {
+            return "Higher risk of Muscle Loss";
+        }
+
+        if (weightInKg > idealBodyWeight && bodyFatPercent > 25) {
+            return "Good potential for Lean Mass Gain";
+        }
+
+        return "Lean Mass Stable";
+    }, [leanBodyMassKg, idealBodyWeight, weightInKg, bodyFatPercent]);
+
+    const dietingRisk = useMemo(() => {
+        if (!leanMassPercent) return "-";
+        return leanMassPercent < 65
+            ? "Risk of Muscle Loss. Prioritise Protein and Training."
+            : "Low risk of Muscle Loss.";
+    }, [leanMassPercent]);
+
+    const lifestyleTip = useMemo(() => {
+        return lifestyleCondition.length > 0 && lifestyleCondition !== "None"
+            ? `Consider consulting a professional for ${lifestyleCondition}.`
+            : "No Specific Condition.";
+    }, [lifestyleCondition]);
+
 
     // ---------------- SUBMIT / RESTART ----------------
     const handleSubmit = () => {
@@ -352,31 +409,82 @@ export default function BodyFat() {
                 {/* ---------------- RESULTS ---------------- */}
                 {submit && (
                     <div className="result-section">
-                        <h3 className="heading-3">Results</h3>
+
+                        <h3 className="heading-3">Body Composition Results</h3>
 
                         <div className="result body-result">
-
                             <div className="infobox">
                                 <p className="body">Body Fat %</p>
-                                <p className="inputbox body">{bodyFatPercent ? bodyFatPercent.toFixed(2) : "-"} %</p>
+                                <p className="inputbox body">{bodyFatPercent?.toFixed(2) ?? "-"} %</p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Body Fat Mass</p>
-                                <p className="inputbox body">{bodyFatMassKg ? bodyFatMassKg.toFixed(2) : "-"} kg</p>
+                                <p className="inputbox body">{bodyFatMassKg?.toFixed(2) ?? "-"} kg</p>
+                            </div>
+
+                            <div className="infobox">
+                                <p className="body">Lean Mass %</p>
+                                <p className="inputbox body">{leanMassPercent?.toFixed(2) ?? "-"} %</p>
+                            </div>
+
+                            <div className="infobox">
+                                <p className="body">Lean Body Mass (LBM)</p>
+                                <p className="inputbox body">{leanBodyMassKg?.toFixed(2) ?? "-"} kg</p>
+                            </div>
+
+                        </div>
+
+                        <div className="result lean-result">
+
+                            <div className="infobox">
+                                <p className="body">Fat : Lean Ratio</p>
+                                <p className="inputbox body">{fatLeanRatio?.toFixed(2) ?? "-"}</p>
+                            </div>
+
+                            <div className="infobox">
+                                <p className="body">Metabolically Active Mass</p>
+                                <p className="inputbox body">{leanMassDrivenBMR?.toFixed(0) ?? "-"} kcal/day</p>
+                            </div>
+
+                            <div className="infobox">
+                                <p className="body">Target Lean Mass</p>
+                                <p className="inputbox body">{targetLeanMass?.toFixed(2) ?? "-"} kg</p>
                             </div>
 
                             <div className="infobox">
                                 <p className="body">Ideal Body Weight (IBW)</p>
                                 <p className="inputbox body">
-                                    {idealBodyWeight.toFixed(2)} <small>kg</small>{" "}
-                                    <span className="diff">
-                                        ({weightInKg - idealBodyWeight > 0 ? "+" : ""}{(weightInKg - idealBodyWeight).toFixed(2)} <small>kg</small>)
-                                    </span>
+                                    {idealBodyWeight?.toFixed(2) ?? "-"} kg
+                                    {idealBodyWeight ? (
+                                        <span className="diff">
+                                            ({weightInKg - idealBodyWeight > 0 ? "+" : ""}{(weightInKg - idealBodyWeight).toFixed(2)} kg)
+                                        </span>
+                                    ) : null}
                                 </p>
                             </div>
+
                         </div>
+
+                        <div className="result lean-result-2">
+                            <div className="infobox">
+                                <p className="body">Muscle Gain / Loss Insight</p>
+                                <p className="inputbox body">{muscleStatus}</p>
+                            </div>
+
+                            <div className="infobox">
+                                <p className="body">Muscle Loss Risk</p>
+                                <p className="inputbox body">{dietingRisk}</p>
+                            </div>
+
+                            <div className="infobox">
+                                <p className="body">Lifestyle / Condition Tip</p>
+                                <p className="inputbox body">{lifestyleTip}</p>
+                            </div>
+                        </div>
+
                     </div>
+
                 )}
 
                 {/* BOTTOM BUTTONS */}

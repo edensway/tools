@@ -2,7 +2,7 @@ import "./styles/app.css";
 import Navigation from "./components/Navigation";
 
 // import Home from "./pages/Home";
-import BodyFat from "./pages/BodyFat";
+import BodyComposition from "./pages/BodyComposition";
 import BMI from "./pages/BMI";
 import BMR from "./pages/BMR";
 
@@ -17,7 +17,7 @@ function App() {
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<BMI />} />
         <Route path="/bmr" element={<BMR />} />
-        <Route path="/body-fat" element={<BodyFat />} />
+        <Route path="/body-comp" element={<BodyComposition />} />
       </Routes>
     </div>
   );

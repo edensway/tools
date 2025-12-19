@@ -195,10 +195,8 @@
                         padding: 12px 16px;
 
                         .diff {
-                            margin-left: 2px;
-
+                            margin-left: 6px;
                             @extend .caption;
-
                             color: $accent;
                         }
                     }

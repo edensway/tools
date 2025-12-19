@@ -32,6 +32,12 @@ $caption: .85rem;
     letter-spacing: -.2pt;
 }
 
+.caption {
+    font-size: $caption;
+    font-weight: 400;
+}
+
+
 @media (max-width: 768px) {
     .heading-1 {
         font-size: 1.25rem;

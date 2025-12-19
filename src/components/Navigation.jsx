@@ -27,9 +27,9 @@ export default function Navigation() {
                         BMR
                     </NavLink>
                     <NavLink
-                        to="/body-fat"
+                        to="/body-comp"
                         className={({ isActive }) => (isActive ? "button" : "btn-unactive")}>
-                        Body Fat
+                        Body Composition
                     </NavLink>
                 </div>
             </div>
