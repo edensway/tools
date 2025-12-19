@@ -26,20 +26,20 @@ export default function TapeForm({ gender, heightCm, weightInKg, method, setBody
         if (method === "Navy Tape Method" || method === "Military Tape Method") {
             const neck = m[0];
             const waist = m[1];
-            const hips = m[2];
+            const hips = m[2] || 0; // default to 0 if undefined
 
-            if (waist <= neck) return;
+            // Basic sanity check
+            if ((gender === "M" && waist <= neck) || (gender === "F" && (waist + hips) <= neck)) return;
 
             if (gender === "M") {
+                // Metric Navy formula for men
                 bf = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck)
-                    + 0.15456 * Math.log10(heightCm))
-                    - 450;
+                    + 0.15456 * Math.log10(heightCm)) - 450;
             } else {
+                // Metric Navy formula for women
                 bf = 495 / (1.29579 - 0.35004 * Math.log10(waist + hips - neck)
-                    + 0.22100 * Math.log10(heightCm))
-                    - 450;
+                    + 0.22100 * Math.log10(heightCm)) - 450;
             }
-
         }
 
         /* --- YMCA --- */
