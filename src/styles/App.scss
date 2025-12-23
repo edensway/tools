@@ -39,6 +39,40 @@ body {
     transform: translateX(-50%);
 }
 
+.install-popup {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .install-popup {
+
+        position: fixed;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        max-width: 90%;
+        width: 360px;
+
+        background: #fff;
+        border-radius: 14px;
+        padding: 16px;
+
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        z-index: 9999;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        .button {
+            flex: 1 1 auto;
+        }
+
+    }
+}
+
 /* -------------------------------
    PRINT SETTINGS
 --------------------------------*/
@@ -78,6 +112,7 @@ body {
     }
 
 }
+
 
 /* iPad print adjustments */
 @media print and (max-device-width: 1024px) {
