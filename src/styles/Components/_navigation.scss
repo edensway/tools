@@ -2,10 +2,15 @@
 
 .navigation {
 
+    position: relative;
+    z-index: 10;
+    background-color: $white;
+
     border-bottom: 2px solid $black50;
     margin-bottom: 16px;
 
     padding: 8px 32px;
+
 
     .nav-container {
 
@@ -17,21 +22,20 @@
         .logo-section {
             display: inherit;
             justify-content: center;
-            align-items: center;
+            align-items: start;
             gap: 16px;
 
             .logo-img {
-                height: 48px;
+                height: 64px;
             }
 
             .title {
 
                 display: flex;
-                align-items: center;
+                flex-direction: column;
+                align-items: left;
                 justify-content: start;
-                flex-wrap: wrap;
-                row-gap: 0px;
-                column-gap: 8px;
+                row-gap: 2px;
 
                 .version-number {
                     margin-bottom: -4px;
@@ -46,6 +50,10 @@
             gap: 8px;
         }
 
+        .menu-button {
+            display: none;
+        }
+
     }
 }
 
@@ -53,12 +61,31 @@
     .navigation {
 
         .nav-container {
+
+            position: relative;
+
             gap: 16px;
-            flex-direction: column;
             align-items: start;
 
+            .logo-section {
+                gap: 12px;
+
+                .logo-img {
+                    height: 48px;
+                }
+            }
+
             .ctas {
+
+                position: absolute;
+                top: 110px;
+                width: 100vw;
+                height: 100vh;
+
+                background: $white;
+
                 display: flex;
+                flex-direction: column;
                 gap: 8px;
                 width: 100%;
 
@@ -67,6 +94,10 @@
                     width: 100%;
                     text-align: center;
                 }
+            }
+
+            .menu-button {
+                display: block;
             }
         }
     }

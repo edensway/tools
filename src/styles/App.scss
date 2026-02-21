@@ -110,6 +110,10 @@ body {
 
 }
 
+.display-none {
+    display: none !important;
+}
+
 
 /* iPad print adjustments */
 @media print and (max-device-width: 1024px) {

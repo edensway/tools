@@ -4,6 +4,7 @@
 .tool {
 
     padding: 0px 32px;
+    z-index: 0;
 
     .tool-container {
 
@@ -107,10 +108,10 @@
 
         .result-section {
 
-            background-color: $white;
+            background-color: $black10;
 
             padding: 24px 32px 32px 32px;
-            border: 2px solid $gray;
+            // border: 2px solid $dark-gray;
             border-radius: 32px;
 
             display: flex;
@@ -185,14 +186,16 @@
                     gap: 4px;
                     width: 100%;
 
-                    .body {
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
+                    // .body {
+                    //     white-space: nowrap;
+                    //     overflow: hidden;
+                    //     text-overflow: ellipsis;
+                    // }
 
                     .inputbox {
                         padding: 12px 16px;
+                        height: fit-content;
+                        border: 2px solid $black50;
 
                         .diff {
                             margin-left: 6px;
@@ -263,7 +266,7 @@
 
             .result-section {
 
-                padding: 18px 24px 24px 24px;
+                padding: 24px 24px 24px 24px;
 
                 .result {
                     flex-direction: column;
