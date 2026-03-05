@@ -182,6 +182,7 @@ export default function BMR() {
                         <input
                             type="number"
                             min={0}
+                            max={122}
                             step={1}
                             className="inputbox body"
                             value={age}

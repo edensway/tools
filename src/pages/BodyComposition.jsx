@@ -188,7 +188,6 @@ export default function BodyComposition() {
     // ---------------- SUBMIT / RESTART ----------------
     const handleSubmit = () => {
         const missingFields = [];
-        if (!age) missingFields.push("Age");
         if (!gender) missingFields.push("Gender");
         if (!height) missingFields.push("Height");
         if (!weight) missingFields.push("Weight");
@@ -305,12 +304,13 @@ export default function BodyComposition() {
 
                     <div className="details-container users_age">
                         <label className="body">
-                            Age <span>*</span>
+                            Age
                         </label>
                         <input
                             type="number"
                             className="inputbox body"
                             min={0}
+                            max={122}
                             step={1}
                             value={age}
                             onChange={(e) => {
@@ -321,7 +321,6 @@ export default function BodyComposition() {
                             }}
                         />
                     </div>
-
 
                     {/* Gender */}
                     <div className="details-container users_gender">

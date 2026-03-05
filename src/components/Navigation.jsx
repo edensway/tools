@@ -35,7 +35,7 @@ export default function Navigation() {
                     <a href="https://edensway.in/" target="_blank">
                         <img src={logo} className="logo-img" alt="Website Logo" />
                     </a>
-                    <h1 className="heading-1 title">Body Measurement<span className="version-number body">(Beta v0.4)</span></h1>
+                    <h1 className="heading-1 title">Body Measurement<span className="version-number body">(Beta v0.5)</span></h1>
                 </div>
 
                 <div className={`ctas ${menu ? "" : "display-none"}`}>
@@ -50,6 +50,12 @@ export default function Navigation() {
                         className={({ isActive }) => (isActive ? "button" : "btn-unactive")}
                         onClick={handleLinkClick}>
                         BMR
+                    </NavLink>
+                    <NavLink
+                        to="/body-index"
+                        className={({ isActive }) => (isActive ? "button" : "btn-unactive")}
+                        onClick={handleLinkClick}>
+                        Body Index
                     </NavLink>
                     <NavLink
                         to="/body-comp"

@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 
 // import Home from "./pages/Home";
 import BodyComposition from "./pages/BodyComposition";
+import BodyIndex from "./pages/BodyIndex";
 import BMI from "./pages/BMI";
 import BMR from "./pages/BMR";
 
@@ -46,6 +47,7 @@ function App() {
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<BMI />} />
         <Route path="/bmr" element={<BMR />} />
+        <Route path="/body-index" element={<BodyIndex />} />
         <Route path="/body-comp" element={<BodyComposition />} />
       </Routes>
 

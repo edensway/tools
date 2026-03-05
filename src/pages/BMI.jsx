@@ -312,6 +312,7 @@ export default function BMI() {
                             type="number"
                             className="inputbox body"
                             min={0}
+                            max={122}
                             step={1}
                             value={age}
                             onChange={(e) => {
